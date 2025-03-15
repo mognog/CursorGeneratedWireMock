@@ -55,6 +55,11 @@ dotnet run
    - `http://localhost:5049/api/weatherCamelCase` - Returns JSON with camelCase properties
    - `http://localhost:5049/api/weatherPascalCase` - Returns JSON with PascalCase properties
 
+![image](https://github.com/user-attachments/assets/f71c052a-856b-4dbd-8627-97a95fc55aa8)
+
+![image](https://github.com/user-attachments/assets/d0320725-fe10-4f64-8193-4528878daefb)
+
+
 ### Running the Tests
 
 ```
