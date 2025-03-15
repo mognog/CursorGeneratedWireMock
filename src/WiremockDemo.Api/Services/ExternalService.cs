@@ -1,4 +1,3 @@
-using System.Net.Http.Json;
 using System.Text.Json;
 using WiremockDemo.Api.Models;
 
@@ -14,7 +13,8 @@ public class ExternalService : IExternalService
     private readonly HttpClient _httpClient;
     private readonly ILogger<ExternalService> _logger;
     private readonly IConfiguration _configuration;
-    private readonly JsonSerializerOptions _jsonOptions;
+    private readonly JsonSerializerOptions _jsonOptionsCamelCase;
+    private readonly JsonSerializerOptions _jsonOptionsPascalCase;
 
     public ExternalService(
         HttpClient httpClient,
@@ -25,10 +25,17 @@ public class ExternalService : IExternalService
         _logger = logger;
         _configuration = configuration;
         
-        // Configure JSON options for deserialization
-        _jsonOptions = new JsonSerializerOptions
+        // Configure JSON options for camelCase deserialization
+        _jsonOptionsCamelCase = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true
+        };
+        
+        // Configure JSON options for PascalCase deserialization
+        _jsonOptionsPascalCase = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = null, // Uses property names as-is (PascalCase)
             WriteIndented = true
         };
     }
@@ -51,8 +58,11 @@ public class ExternalService : IExternalService
             // Ensure we got a successful response
             response.EnsureSuccessStatusCode();
             
-            // Deserialize the response
-            var weatherData = await response.Content.ReadFromJsonAsync<WeatherData>(_jsonOptions);
+            // Choose the appropriate JSON options based on the format
+            var jsonOptions = usePascalCase ? _jsonOptionsPascalCase : _jsonOptionsCamelCase;
+            
+            // Deserialize the response using the appropriate JSON options
+            var weatherData = await response.Content.ReadFromJsonAsync<WeatherData>(jsonOptions);
             
             if (weatherData == null)
             {

@@ -13,9 +13,9 @@ public class WiremockServer : IDisposable
     private readonly JsonSerializerOptions _jsonOptionsCamelCase;
     private readonly JsonSerializerOptions _jsonOptionsPascalCase;
     private readonly WeatherData _weatherData;
-    private const int ServerPort = 9090;
+    private const int DefaultServerPort = 9090;
 
-    public WiremockServer(ILogger<WiremockServer> logger)
+    public WiremockServer(ILogger<WiremockServer> logger, int? port = null)
     {
         _logger = logger;
         
@@ -41,8 +41,9 @@ public class WiremockServer : IDisposable
         };
 
         // Start WireMock server
-        _server = WireMockServer.Start(ServerPort);
-        _logger.LogInformation("WireMock server started on port {Port}", ServerPort);
+        int serverPort = port ?? DefaultServerPort;
+        _server = WireMockServer.Start(serverPort);
+        _logger.LogInformation("WireMock server started on port {Port}", serverPort);
         
         // Set up mock responses
         SetupMockResponses();

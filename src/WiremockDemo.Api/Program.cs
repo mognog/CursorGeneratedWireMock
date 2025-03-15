@@ -1,4 +1,3 @@
-using WiremockDemo.Api.Models;
 using WiremockDemo.Api.Services;
 using WiremockDemo.Api.Wiremock;
 

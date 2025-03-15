@@ -25,13 +25,18 @@ This project demonstrates how to use WireMock.NET to create mock HTTP responses 
 
 - **src/WiremockDemo.Api**: The main API project
   - **Controllers**: Contains the API controllers
+    - `WeatherController.cs`: Handles HTTP requests and returns weather data
   - **Models**: Contains the data models
+    - `WeatherData.cs`: Defines the weather data structure
   - **Services**: Contains the service layer that calls the external API
+    - `ExternalService.cs`: Implements the IExternalService interface to call the external API
   - **Wiremock**: Contains the WireMock server implementation
+    - `WiremockServer.cs`: Sets up and configures the WireMock server
 
 - **tests/WiremockDemo.Tests**: The test project
-  - Contains unit tests for the API controllers
-  - Includes a mock implementation of the external service
+  - `WeatherControllerTests.cs`: Contains unit tests for the API controllers
+  - `MockExternalService.cs`: Includes a mock implementation of the external service
+  - `CustomWebApplicationFactory.cs`: Configures the test environment
 
 ## Getting Started
 
@@ -54,13 +59,20 @@ dotnet run
 4. Access the API endpoints:
    - `http://localhost:5049/api/weatherCamelCase` - Returns JSON with camelCase properties
    - `http://localhost:5049/api/weatherPascalCase` - Returns JSON with PascalCase properties
+   - `http://localhost:5049/api/Weather` - Legacy endpoint, returns JSON with camelCase properties
 
 ![image](https://github.com/user-attachments/assets/f71c052a-856b-4dbd-8627-97a95fc55aa8)
 
 ![image](https://github.com/user-attachments/assets/d0320725-fe10-4f64-8193-4528878daefb)
 
-
 ### Running the Tests
+
+```
+cd tests/WiremockDemo.Tests
+dotnet test
+```
+
+Or from the root directory:
 
 ```
 dotnet test
@@ -68,12 +80,43 @@ dotnet test
 
 ## How It Works
 
-1. The API controllers receive requests and call the external service
-2. The external service makes HTTP requests to the WireMock server
-3. The WireMock server returns mock responses with the appropriate JSON formatting
-4. The API controllers return the data to the client
+### WireMock Server
 
-This demonstrates how to use WireMock.NET to simulate external dependencies during development and testing.
+The WireMock server is implemented in `WiremockServer.cs` and is responsible for:
+
+1. Starting a WireMock.NET server on port 9090
+2. Setting up mock responses for different API endpoints
+3. Configuring JSON serialization options for different response formats
+
+The server is registered as a singleton in the dependency injection container and is automatically started when the application runs in development mode.
+
+### External Service
+
+The `ExternalService` class is responsible for:
+
+1. Making HTTP requests to the WireMock server
+2. Deserializing the responses using the appropriate JSON options
+3. Returning the data to the controllers
+
+In a real-world scenario, this service would call an actual external API, but for demonstration purposes, it calls the WireMock server running locally.
+
+### Controllers
+
+The `WeatherController` class exposes three endpoints:
+
+1. `GET /api/weatherCamelCase` - Returns weather data with camelCase property names
+2. `GET /api/weatherPascalCase` - Returns weather data with PascalCase property names
+3. `GET /api/Weather` - Legacy endpoint that returns weather data with camelCase property names
+
+### Testing
+
+The test project includes:
+
+1. Unit tests for the `WeatherController` class
+2. A mock implementation of the `IExternalService` interface
+3. A custom `WebApplicationFactory` for integration testing
+
+The tests verify that the controllers return the expected data and handle errors correctly.
 
 ## License
 
