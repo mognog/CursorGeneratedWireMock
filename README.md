@@ -2,6 +2,17 @@
 
 A demonstration project showing how to use WireMock.NET for mocking external API dependencies in a .NET application.
 
+## Project Creation
+
+This entire project was generated from scratch using:
+- **Cursor IDE** (version 0.46.11)
+- **Claude 3.7 Sonnet** LLM
+- Windows 11 PC
+
+The initial project generation took approximately 10 minutes, with an additional 20 minutes for tweaks and refinements. This demonstrates the power of AI-assisted development for rapidly creating functional demo applications.
+
+The idea for this project was inspired by an amazing coder and good friend, Adrian Cope.
+
 ## Overview
 
 This project demonstrates how to use WireMock.NET to create mock HTTP responses for testing and development purposes. It includes:
