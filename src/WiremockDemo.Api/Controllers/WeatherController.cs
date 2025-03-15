@@ -74,11 +74,4 @@ public class WeatherController : ControllerBase
             return StatusCode(500, "An error occurred while retrieving weather data");
         }
     }
-    
-    // Keep the original endpoint for backward compatibility
-    [HttpGet("Weather")]
-    public async Task<IActionResult> GetWeather()
-    {
-        return await GetWeatherCamelCase();
-    }
 } 

@@ -1,6 +1,11 @@
 @WiremockDemo.Api_HostAddress = http://localhost:5049
 
-GET {{WiremockDemo.Api_HostAddress}}/weatherforecast/
+GET {{WiremockDemo.Api_HostAddress}}/api/weatherCamelCase
+Accept: application/json
+
+###
+
+GET {{WiremockDemo.Api_HostAddress}}/api/weatherPascalCase
 Accept: application/json
 
 ###

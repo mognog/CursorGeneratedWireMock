@@ -59,7 +59,6 @@ dotnet run
 4. Access the API endpoints:
    - `http://localhost:5049/api/weatherCamelCase` - Returns JSON with camelCase properties
    - `http://localhost:5049/api/weatherPascalCase` - Returns JSON with PascalCase properties
-   - `http://localhost:5049/api/Weather` - Legacy endpoint, returns JSON with camelCase properties
 
 ![image](https://github.com/user-attachments/assets/f71c052a-856b-4dbd-8627-97a95fc55aa8)
 
@@ -102,11 +101,10 @@ In a real-world scenario, this service would call an actual external API, but fo
 
 ### Controllers
 
-The `WeatherController` class exposes three endpoints:
+The `WeatherController` class exposes two endpoints:
 
 1. `GET /api/weatherCamelCase` - Returns weather data with camelCase property names
 2. `GET /api/weatherPascalCase` - Returns weather data with PascalCase property names
-3. `GET /api/Weather` - Legacy endpoint that returns weather data with camelCase property names
 
 ### Testing
 
