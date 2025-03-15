@@ -15,7 +15,9 @@ The idea for this project was inspired by an amazing coder and good friend, Adri
 
 ## Overview
 
-This project demonstrates how to use WireMock.NET to create mock HTTP responses for testing and development purposes. It includes:
+This project primarily demonstrates the power of AI-assisted development using Cursor IDE and Claude 3.7 Sonnet. It showcases how quickly a functional application can be created with AI assistance.
+
+Technically, the project demonstrates how to use WireMock.NET to create mock HTTP responses for testing and development purposes. It includes:
 
 - A .NET API with controllers that return JSON data in different formats (camelCase and PascalCase)
 - A WireMock server that simulates an external API
@@ -43,7 +45,7 @@ This project demonstrates how to use WireMock.NET to create mock HTTP responses 
 ### Prerequisites
 
 - .NET 8.0 SDK or later
-- Visual Studio 2022 or another compatible IDE
+- Cursor IDE (or another AI-powered IDE for the full experience, as this project demonstrates AI-assisted development)
 
 ### Running the Application
 
