@@ -9,7 +9,7 @@ This entire project was generated from scratch using:
 - **Claude 3.7 Sonnet** LLM
 - Windows 11 PC
 
-The initial project generation took approximately 10 minutes, with an additional 20 minutes for tweaks and refinements. This demonstrates the power of AI-assisted development for rapidly creating functional demo applications.
+The initial project generation took approximately 10 minutes, with an additional 30 minutes for tweaks and refinements (mainly to this readme file!). This demonstrates the power of AI-assisted development for rapidly creating functional demo applications.
 
 The idea for this project was inspired by an amazing coder and good friend, Adrian Cope.
 
